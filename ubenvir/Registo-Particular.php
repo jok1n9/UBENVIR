@@ -1,3 +1,52 @@
+<?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+$error_text = "";
+
+if ($_POST) {
+
+  $nome = $_POST["nome"];
+  $email = $_POST["email"];
+  $username = $_POST["username"];
+  $password = $_POST["password"];
+  $endereco = $_POST["endereco"];
+  $telemovel = $_POST["telemovel"];
+  $nif = $_POST["nif"];
+
+
+  $username = mysqli_real_escape_string($con, $username);
+  $password = mysqli_real_escape_string($con, $password);
+
+
+  if (!empty($username) && !empty($password) &&!empty($nome) && !empty($telemovel) &&!empty($endereco)&& is_numeric($nif) && !is_numeric($username) && is_numeric($telemovel)) {
+    if (!preg_match('/\s/', $username)) {
+      $username = xss_countermeasure($username);
+      $password = xss_countermeasure($password);
+
+      $query = "SELECT * FROM users WHERE username = '$username'";
+      $result = mysqli_query($con, $query);
+      if (mysqli_num_rows($result) == 0) {
+        $query = "insert into users (nome,email,username,password,endereco,telemovel,nif) values ('$nome','$email','$username','$password','$endereco','$telemovel','$nif')";
+        $result = mysqli_query($con, $query);
+        header("Location: Lojas.php");
+        die;
+      } else {
+        $error_text = "User already exists!";
+      }
+    } else {
+      $error_text = "No spaces allowed!";
+    }
+  } else {
+    $error_text = "Please enter some valid information!";
+  }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -33,26 +82,25 @@
         <h6 class="u-text u-text-default u-text-2">Particulares</h6>
         <div class="u-align-center u-container-style u-expanded-width-xs u-group u-radius-30 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <div class="u-form u-form-1">
-              <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 37px;">
-                <div class="u-form-email u-form-group">
-                  <label for="email-4c18" class="u-form-control-hidden u-label u-label-1"></label>
-                  <input type="email" placeholder="Email" id="email-4c18" name="email" class="u-border-11 u-border-palette-4-light-3 u-custom-color-1 u-input u-input-rectangle u-radius-21 u-input-1" required="">
-                </div>
-                <div class="u-form-group u-form-group-2">
-                  <label for="text-4bea" class="u-form-control-hidden u-label u-label-2"></label>
-                  <input type="text" placeholder="Password" id="text-4bea" name="password" class="u-border-11 u-border-palette-4-light-3 u-custom-color-1 u-input u-input-rectangle u-radius-21 u-input-2">
-                </div>
-                <div class="u-align-center u-form-group u-form-submit">
-                  <a href="#" class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1">Registar<br>
-                  </a>
-                  <input type="submit" value="submit" class="u-form-control-hidden">
-                </div>
-                <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                <input type="hidden" value="" name="recaptchaResponse">
-              </form>
-            </div>
+          <form method="post">
+          <input type="text" name="nome" placeholder="Nome Completo" />
+          <input type="text" name="email" placeholder="email" />
+          <input type="text" name="username" placeholder="Username" />
+          <input type="text" name="password" placeholder="Password" />
+          <input type="text" name="endereco" placeholder="endereco" />
+          <input type="text" name="telemovel" placeholder="N telemóvel" />
+          <input type="text" name="nif" placeholder="Nif" />
+         
+          <div class="text-center">
+            <?php
+            echo "<p style='color: red;'>$error_text</p>";
+            ?>
+            <input class="button" type="submit" value="Registo">
+            <a href="Registo-Particular.php">
+              <div class="button">Create an account</div>
+            </a>
+          </div>
+        </form>
           </div>
         </div>
       </div>
@@ -60,7 +108,7 @@
     
     
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-grey-80" id="sec-b725"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
+        <a href="" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
           <img src="images/fdc97e8567fcff5ce1a325047710eb5f.png" class="u-logo-image u-logo-image-1">
         </a>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">

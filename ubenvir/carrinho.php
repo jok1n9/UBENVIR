@@ -1,3 +1,26 @@
+<?php
+
+session_start();
+
+include("connection.php");
+include("functions.php");
+$user_data = check_login($con);  
+
+
+
+if($_POST) {
+  $var = $_POST['counter'];
+  echo $var;
+  while($var != 0) {
+    $quantity = $_POST['$var'];
+  }
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -13,8 +36,7 @@
     <meta name="generator" content="Nicepage 4.12.14, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
-    
-    
+        
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -64,10 +86,21 @@
                   <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Subtotal </th>
                 </tr>
               </thead>
-              <tbody class="u-table-body">
-                
+              <form>
               
-              
+              <tbody class="u-table-body">                
+                  
+                  <?php
+                    $total_cost = 0;
+                    $counter = 0;
+                    $user_id = $user_data["id"];
+                    $products = mysqli_query($con, "SELECT * FROM carrinho WHERE userid = $user_id");
+                    while ($row = mysqli_fetch_array($products)) { 
+                      $product_id = $row['productid'];
+                      $product = mysqli_query($con, "SELECT * FROM products WHERE id = $product_id");
+                      $info = mysqli_fetch_array($product);
+                      $counter = $counter + 1;
+                  ?>
               
                   <tr style="height: 121px;">
                   <td class="u-border-1 u-border-grey-dark-1 u-table-cell"><span class="u-cart-remove-item u-icon u-icon-1"><svg class="u-svg-content" viewBox="0 0 52 52" x="0px" y="0px" style="width: 1em; height: 1em;"><g><path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M26,50C12.767,50,2,39.233,2,26
@@ -76,16 +109,25 @@
 		s0.512-0.098,0.707-0.293L26,27.414l8.293,8.293C34.488,35.902,34.744,36,35,36s0.512-0.098,0.707-0.293
 		c0.391-0.391,0.391-1.023,0-1.414L27.414,26l8.293-8.293C36.098,17.316,36.098,16.684,35.707,16.293z"></path>
 </g></svg><img></span>
+
                     <img class="u-cart-product-image u-image u-image-default u-product-control" src="images/7.svg">
                     <h2 class="u-cart-product-title u-product-control u-text u-text-1">
-                      <a class="u-product-title-link" href="#">Product 1 Title</a>
+                      <a class="u-product-title-link" href="redirect2.php?id=<?php echo $info['id']; ?>">
+                        <?php
+                          echo $info['nome'];
+                        ?>
+                      </a>
                     </h2>
                   </td>
                   <td class="u-border-1 u-border-grey-dark-1 u-table-cell">
                     <div class="u-cart-product-price u-product-control u-product-price">
                       <div class="u-price-wrapper">
                         <div class="u-hide-price u-old-price"></div>
-                        <div class="u-price">$17.00</div>
+                        <div class="u-price">
+                        <?php
+                          echo $info['preco'] . ' €';
+                        ?>                        
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -96,7 +138,8 @@
                         <a class="disabled minus u-button-style u-hidden u-quantity-button">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
                         </a>
-                        <input class="u-border-grey-30 u-input" type="text" value="1" pattern="[0-9]+">
+                        <input name="<?php echo $counter; ?>" class="u-border-grey-30 u-input" type="text" value=<?php echo $row['quantity']; ?> pattern="[0-9]+">
+                        <input type = "hidden" name = "<?php echo $counter; ?>" value = "<?php echo $row['productid']; ?>"> 
                         <a class="plus u-button-style u-hidden u-quantity-button">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8 M 8 4 v 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
                         </a>
@@ -107,28 +150,41 @@
                     <div class="u-cart-product-subtotal u-product-control u-product-price">
                       <div class="u-price-wrapper">
                         <div class="u-hide-price u-old-price"></div>
-                        <div class="u-price" style="font-weight: 700;">$17.00</div>
+                        <div class="u-price" style="font-weight: 700;">
+                          <?php
+                            $subtotal = $row['quantity'] * $info["preco"];                            
+                            echo $subtotal . ' €';
+                            $total_cost = $total_cost + $subtotal;
+                          ?>
+                      </div>
                       </div>
                     </div>
                   </td>
                 </tr>
 
-
-
-
-
-
+                  <?php
+                    
+                    }
+                  ?>
                 
               </tbody>
             </table>
           </div>
           <div class="u-cart-button-container">
-            <a href="#" class="u-active-none u-btn u-button-style u-cart-continue-shopping u-hover-none u-none u-text-body-color u-btn-1"><span class="u-icon"><svg class="u-svg-content" viewBox="0 0 443.52 443.52" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><path d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8    c-6.662,6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,24.132-0.42c6.387-6.614,6.387-17.099,0-23.712    L143.492,221.863z"></path>
+            <a href="Lojas.php" class="u-active-none u-btn u-button-style u-cart-continue-shopping u-hover-none u-none u-text-body-color u-btn-1"><span class="u-icon"><svg class="u-svg-content" viewBox="0 0 443.52 443.52" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><path d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8    c-6.662,6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,24.132-0.42c6.387-6.614,6.387-17.099,0-23.712    L143.492,221.863z"></path>
 </g>
 </g></svg><img></span>&nbsp;Continue Shopping 
             </a>
-            <a href="#" class="u-btn u-button-style u-cart-update u-grey-5">Update Cart</a>
+            <div>
+              <input type = "hidden" name = "counter" value = "<?php echo $counter; ?>"> 
+                  </div>  
+            <button
+             class="u-btn u-button-style u-cart-update u-grey-5"
+             
+             >Update Cart
+            </button>            
           </div>
+            </form>
           <div class="u-cart-blocks-container">
             <div class="u-cart-block u-indent-30">
               <div class="u-cart-block-container u-clearfix">
@@ -145,7 +201,7 @@
                         <input type="submit" value="submit" class="u-form-control-hidden">
                       </div>
                       <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
-                      <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
+                      <div class="u-form-send-error u-form-send-message">Promotion Code Invalid !!!</div>
                       <input type="hidden" value="" name="recaptchaResponse">
                     </form>
                   </div>
@@ -165,11 +221,11 @@
                       <tbody class="u-align-right u-table-body">
                         <tr style="height: 46px;">
                           <td class="u-align-left u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-table-cell-17">Subtotal</td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell">$281.00</td>
+                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"> <?php echo $total_cost ?> </td>
                         </tr>
                         <tr style="height: 46px;">
                           <td class="u-align-left u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-table-cell-19">Total</td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-table-cell-20">$281.00</td>
+                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-table-cell-20"> <?php echo $total_cost ?> </td>
                         </tr>
                       </tbody>
                     </table>

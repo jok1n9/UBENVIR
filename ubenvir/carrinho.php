@@ -234,8 +234,24 @@ if($_POST) {
                       </tbody>
                     </table>
                   </div>
-                  <a href="#" class="u-border-none u-btn u-button-style u-cart-checkout-btn u-palette-4-light-2 u-btn-4">Proceed to Checkout</a>
-                </div>
+                  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">			
+			              <!-- Paypal business test account email id so that you can collect the payments. -->
+			              <input type="hidden" name="business" value="sb-b347nq15339787@business.example.com">			
+			              <!-- Buy Now button. -->
+			              <input type="hidden" name="cmd" value="_xclick">			
+			              <!-- Details about the item that buyers will purchase. -->
+			              <input type="hidden" name="item_name" value="<?php echo $row['nome']; ?>">
+			              <input type="hidden" name="item_number" value="<?php echo $row['id']; ?>">
+			              <input type="hidden" name="amount" value="<?php echo $total_cost ?>">
+				            <input type="hidden" name="currency_code" value="USD">			
+			<!-- URLs -->
+                    <input type='hidden' name='cancel_return' value='http://localhost/paypal_integration_php/cancel.php'>
+			              <input type='hidden' name='return' value='http://localhost/paypal_integration_php/success.php'>
+			
+			              <input type="image" name="submit"
+			                src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online">
+			              <img alt=""  width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >    
+			            </form>                </div>
               </div>
             </div>
           </div>

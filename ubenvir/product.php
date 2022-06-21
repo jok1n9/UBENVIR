@@ -16,7 +16,7 @@ if($_POST){
   
   $product = htmlspecialchars($_POST['productid']);
   $userid = htmlspecialchars($_POST['userid']);
-  $query = "SELECT * FROM carrinho WHERE userid = '$userid'";
+  $query = "SELECT * FROM carrinho WHERE productid = '$product'";
   $result = mysqli_query($con, $query);
   if(mysqli_num_rows($result) == 0){
     $query = "insert into carrinho (productid, userid, quantity) values ('$product', '$userid', '1')";

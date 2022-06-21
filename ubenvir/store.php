@@ -10,7 +10,7 @@ if($_POST){
   
   $product = htmlspecialchars($_POST['productid']);
   $userid = htmlspecialchars($_POST['userid']);
-  $query = "SELECT * FROM carrinho WHERE userid = '$userid'";
+  $query = "SELECT * FROM carrinho WHERE productid = '$product'";
   $result = mysqli_query($con, $query);
   if(mysqli_num_rows($result) == 0){
     $query = "insert into carrinho (productid, userid, quantity) values ('$product', '$userid', '1')";
@@ -119,7 +119,7 @@ if($_POST){
                     <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content--><?php echo $row['preco'];?>€<!--/product_regular_price_content--></div><!--/product_regular_price-->
                   </div>
                 </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":""}--><!--/options_json-->
-                <form method="post">
+                <form method="post" href='#'>
               <div>
                 <input type="hidden" name="productid" id="productid" Value="<?php echo $row['id'];?>" ></input>
               </div>

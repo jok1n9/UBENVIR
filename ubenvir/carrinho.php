@@ -59,7 +59,7 @@ if($_POST) {
   <body class="u-body u-xl-mode">
     <section class="u-clearfix u-section-1" id="sec-259e">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <img class="u-image u-image-default u-image-1" src="images/947ea8f2999b07da1da8b4b5f2dd955e.png" alt="" data-image-width="415" data-image-height="122">
+        <img data-href = "Lojas.php" class="u-image u-image-default u-image-1" src="images/947ea8f2999b07da1da8b4b5f2dd955e.png" alt="" data-image-width="415" data-image-height="122">
         <a href="suporte.php" class="u-btn u-btn-round u-button-style u-gradient u-none u-radius-4 u-text-body-alt-color u-btn-1">CALL US</a><span class="u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 53 53" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9d85"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 53 53" x="0px" y="0px" id="svg-9d85" style="enable-background:new 0 0 53 53;"><path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53
 	c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322
 	c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546
@@ -119,7 +119,7 @@ if($_POST) {
 		c0.391-0.391,0.391-1.023,0-1.414L27.414,26l8.293-8.293C36.098,17.316,36.098,16.684,35.707,16.293z"></path>
 </g></svg><img></span>
 
-                    <img class="u-cart-product-image u-image u-image-default u-product-control" src="images/7.svg">
+                    <img class="u-cart-product-image u-image u-image-default u-product-control" src="<?php echo $info['imagem']?>">
                     <h2 class="u-cart-product-title u-product-control u-text u-text-1">
                       <a class="u-product-title-link" href="redirect2.php?id=<?php echo $info['id']; ?>">
                         <?php
@@ -225,11 +225,11 @@ if($_POST) {
                       <tbody class="u-align-right u-table-body">
                         <tr style="height: 46px;">
                           <td class="u-align-left u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-table-cell-17">Subtotal</td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"> <?php echo $total_cost ?> </td>
+                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell"> <?php echo $total_cost . " €"?> </td>
                         </tr>
                         <tr style="height: 46px;">
                           <td class="u-align-left u-border-1 u-border-grey-dark-1 u-first-column u-table-cell u-table-cell-19">Total</td>
-                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-table-cell-20"> <?php echo $total_cost ?> </td>
+                          <td class="u-border-1 u-border-grey-dark-1 u-table-cell u-table-cell-20"> <?php echo $total_cost  . " €"?> </td>
                         </tr>
                       </tbody>
                     </table>

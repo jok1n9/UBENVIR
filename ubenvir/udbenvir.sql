@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Jun-2022 às 19:33
+-- Tempo de geração: 21-Jun-2022 às 02:00
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -35,6 +35,30 @@ CREATE TABLE `carrinho` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `comments`
+--
+
+CREATE TABLE `comments` (
+  `question_id` bigint(20) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `message` varchar(1000) NOT NULL,
+  `id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `comments`
+--
+
+INSERT INTO `comments` (`question_id`, `user_name`, `message`, `id`) VALUES
+(2, 'vic', 'hey oh testing', 1),
+(5, 'vic', 'hello', 2),
+(5, 'message', 'rtfyguhijopl', 3),
+(5, 'iuyewaghdf', 'uyshgdjfnmiusdjhfnusidhjf', 4),
+(6, 'ze', 'Nope, mano, estás doido?', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `companhia`
 --
 
@@ -45,15 +69,18 @@ CREATE TABLE `companhia` (
   `password` text NOT NULL,
   `telemovel` int(9) NOT NULL,
   `endereco` text NOT NULL,
-  `banco` int(11) NOT NULL
+  `banco` int(11) NOT NULL,
+  `descricao` text DEFAULT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `companhia`
 --
 
-INSERT INTO `companhia` (`Nome`, `username`, `email`, `password`, `telemovel`, `endereco`, `banco`) VALUES
-('gggg', 'gggg', 'gggg', 'gggg', 444, 'gggg', 444);
+INSERT INTO `companhia` (`Nome`, `username`, `email`, `password`, `telemovel`, `endereco`, `banco`, `descricao`, `id`) VALUES
+('gggg', 'gggg', 'gggg', 'gggg', 444, 'gggg', 444, NULL, 1),
+('2123w1', 'PingoDoce', '213', '2112', 123, 'ewfw', 12, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -63,10 +90,18 @@ INSERT INTO `companhia` (`Nome`, `username`, `email`, `password`, `telemovel`, `
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `companhia` text NOT NULL,
+  `companhia` int(11) NOT NULL,
   `preco` decimal(10,0) NOT NULL,
-  `comentário` text NOT NULL
+  `comentário` text NOT NULL,
+  `nome` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `products`
+--
+
+INSERT INTO `products` (`id`, `companhia`, `preco`, `comentário`, `nome`) VALUES
+(1, 1, '122', 'Produto fixe para comer o cu da tua mae', 'a tua mãe');
 
 -- --------------------------------------------------------
 
@@ -84,12 +119,26 @@ CREATE TABLE `users` (
   `nif` int(11) NOT NULL,
   `credito` int(16) DEFAULT NULL,
   `datacc` int(4) DEFAULT NULL,
-  `3numcc` int(3) DEFAULT NULL
+  `3numcc` int(3) DEFAULT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `users`
+--
+
+INSERT INTO `users` (`Nome`, `email`, `username`, `password`, `endereco`, `telemovel`, `nif`, `credito`, `datacc`, `3numcc`, `id`) VALUES
+('teste', 'teste', 'teste', 'teste', 'teste', 23, 23, NULL, NULL, NULL, 1);
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `companhia`
+--
+ALTER TABLE `companhia`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `products`
@@ -98,14 +147,32 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `companhia`
+--
+ALTER TABLE `companhia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

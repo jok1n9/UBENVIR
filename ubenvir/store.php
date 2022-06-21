@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+$user_data = check_login($con);
+$produto = $_SESSION['companhia'];
+if ($_POST) {
+
+}
+if(array_key_exists('button1', $_POST)) {
+  $query = "insert into carrinho (banco) values ('$banco')";
+  $result = mysqli_query($con, $query);
+}
+?>
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -30,8 +47,10 @@
   <body class="u-body u-overlap u-xl-mode">
     <section class="u-clearfix u-section-1" id="sec-259e">
       <div class="u-clearfix u-sheet u-sheet-1">
+      <a href="Lojas.php">
         <img class="u-image u-image-default u-image-1" src="images/947ea8f2999b07da1da8b4b5f2dd955e.png" alt="" data-image-width="415" data-image-height="122">
-        <a href="https://nicepage.com/c/sports-html-templates" class="u-btn u-btn-round u-button-style u-gradient u-none u-radius-4 u-text-body-alt-color u-btn-1">CALL US</a><span class="u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 53 53" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9327"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 53 53" x="0px" y="0px" id="svg-9327" style="enable-background:new 0 0 53 53;"><path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53
+      </a>  
+      <a href="suporte.php" class="u-btn u-btn-round u-button-style u-gradient u-none u-radius-4 u-text-body-alt-color u-btn-1">CALL US</a><span class="u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 53 53" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9327"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 53 53" x="0px" y="0px" id="svg-9327" style="enable-background:new 0 0 53 53;"><path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53
 	c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322
 	c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546
 	c0-0.78-0.347-1.477-0.886-1.965v-5.126c0,0,1.053-7.977-9.75-7.977s-9.75,7.977-9.75,7.977v5.126
@@ -43,71 +62,68 @@
 		c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233
 		c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"></path>
 </g></svg></span>
-        <a href="https://nicepage.com/c/slider-html-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Joaquim</a>
+        <a href="" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2"><?php echo "Olá, ", $user_data['username']; ?></a>
       </div>
+      
     </section>
+    
     <section class="u-align-left u-clearfix u-section-2" id="sec-0340">
+      
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        
         <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
-          <h1 style="text-align: left;">Loja n1</h1>
+          <h1 style="text-align: left;"><?php 
+          $result = mysqli_query($con, "SELECT * FROM companhia where id = '$produto'");
+          $result2= mysqli_fetch_array($result);
+          echo $result2['Nome']; ?></h1>
+
           <p style="text-align: left;">
-            <span style="line-height: 2.0;">Sample text. Click to select the text box. Click again or double click to start editing the text. Dictum non consectetur a erat nam at. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Tellus mauris a diam maecenas sed enim ut sem. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Pretium nibh ipsum consequat nisl vel pretium. In eu mi bibendum neque egestas congue. Vitae ultricies leo integer malesuada nunc. Nibh praesent tristique magna sit amet purus gravida. Diam volutpat commodo sed egestas. Gravida dictum fusce ut placerat orci nulla pellentesque.</span>
+          
+            <span style="line-height: 2.0;"><?php echo $result2['descricao'];?></span>
           </p>
         </div>
       </div>
     </section>
+    
     <section class="u-align-center u-clearfix u-grey-10 u-section-3" id="sec-716c">
+      
       <div class="u-clearfix u-sheet u-sheet-1"><!--products--><!--products_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/products_options_json-->
         <div class="u-expanded-width u-products u-products-1">
           <div class="u-repeater u-repeater-1"><!--product_item-->
-            <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-1" data-href="product.html" data-page-id="1870824071">
+            
+          
+          
+          
+          
+          <?php
+            $result = mysqli_query($con, "SELECT * FROM products where companhia = '$produto'");
+            while ($row = mysqli_fetch_array($result)) { 
+          ?>
+          
+            <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-1" data-href="redirect2.php?id=<?php echo $row['id']; ?>" data-page-id="1870824071">
+            
               <div class="u-container-layout u-similar-container u-container-layout-1"><!--product_image-->
                 <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1" src="images/7.svg"><!--/product_image--><!--product_title-->
                 <h4 class="u-product-control u-text u-text-1">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 1 Title<!--/product_title_content--></a>
+                  <a class="u-product-title-link" href=""><!--product_title_content--><?php echo $row['nome'];?><!--/product_title_content--></a>
                 </h4><!--/product_title--><!--product_content-->
-                <div class="u-product-control u-product-desc u-text u-text-2"><!--product_content_content-->Sample small text. Lorem ipsum dolor sit amet.<!--/product_content_content--></div><!--/product_content--><!--product_price-->
                 <div class="u-product-control u-product-price u-product-price-1">
                   <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
                     <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
+                    <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content--><?php echo $row['preco'];?>€<!--/product_regular_price_content--></div><!--/product_regular_price-->
                   </div>
                 </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":""}--><!--/options_json-->
-                <a href="" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-1"><!--product_button_content-->Add to Cart<!--/product_button_content--></a><!--/product_button-->
+                
               </div>
+              
             </div><!--/product_item--><!--product_item-->
-            <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-2">
-              <div class="u-container-layout u-similar-container u-container-layout-2"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-2" src="images/8.svg"><!--/product_image--><!--product_title-->
-                <h4 class="u-product-control u-text u-text-3">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 2 Title<!--/product_title_content--></a>
-                </h4><!--/product_title--><!--product_content-->
-                <div class="u-product-control u-product-desc u-text u-text-4"><!--product_content_content-->Sample small text. Lorem ipsum dolor sit amet.<!--/product_content_content--></div><!--/product_content--><!--product_price-->
-                <div class="u-product-control u-product-price u-product-price-2">
-                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                    <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
-                  </div>
-                </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":""}--><!--/options_json-->
-                <a href="" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-2"><!--product_button_content-->Add to Cart<!--/product_button_content--></a><!--/product_button-->
-              </div>
-            </div><!--/product_item--><!--product_item-->
-            <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-3">
-              <div class="u-container-layout u-similar-container u-container-layout-3"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-3" src="images/10.svg"><!--/product_image--><!--product_title-->
-                <h4 class="u-product-control u-text u-text-5">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 3 Title<!--/product_title_content--></a>
-                </h4><!--/product_title--><!--product_content-->
-                <div class="u-product-control u-product-desc u-text u-text-6"><!--product_content_content-->Sample small text. Lorem ipsum dolor sit amet.<!--/product_content_content--></div><!--/product_content--><!--product_price-->
-                <div class="u-product-control u-product-price u-product-price-3">
-                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                    <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
-                  </div>
-                </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":""}--><!--/options_json-->
-                <a href="" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-3"><!--product_button_content-->Add to Cart<!--/product_button_content--></a><!--/product_button-->
-              </div>
-            </div><!--/product_item-->
+            
+          <?php
+            }
+          ?>
+
+
+
           </div>
         </div><!--/products-->
       </div>
@@ -115,7 +131,7 @@
     
     
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-grey-80" id="sec-b725"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
+        <a href="" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
           <img src="images/fdc97e8567fcff5ce1a325047710eb5f.png" class="u-logo-image u-logo-image-1">
         </a>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">

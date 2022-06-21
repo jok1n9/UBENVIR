@@ -76,64 +76,20 @@
                 <a href="" class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-1"><!--product_button_content-->remove<!--/product_button_content--></a><!--/product_button-->
               </div>
             </div><!--/product_item--><!--product_item-->
-            <div class="u-align-center u-container-style u-products-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-2" src="images/9.svg"><!--/product_image--><!--product_title-->
-                <h4 class="u-align-center u-product-control u-text u-text-2">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 2 Title<!--/product_title_content--></a>
-                </h4><!--/product_title--><!--product_price-->
-                <div class="u-product-control u-product-price u-product-price-2">
-                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                    <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
-                  </div>
-                </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"remove"}--><!--/options_json-->
-                <a href="" class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-2"><!--product_button_content-->remove<!--/product_button_content--></a><!--/product_button-->
-              </div>
-            </div><!--/product_item--><!--product_item-->
-            <div class="u-align-center u-container-style u-products-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-3" src="images/7.svg"><!--/product_image--><!--product_title-->
-                <h4 class="u-align-center u-product-control u-text u-text-3">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 3 Title<!--/product_title_content--></a>
-                </h4><!--/product_title--><!--product_price-->
-                <div class="u-product-control u-product-price u-product-price-3">
-                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                    <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
-                  </div>
-                </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"remove"}--><!--/options_json-->
-                <a href="" class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-3"><!--product_button_content-->remove<!--/product_button_content--></a><!--/product_button-->
-              </div>
-            </div><!--/product_item--><!--product_item-->
-            <div class="u-align-center u-container-style u-products-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-4" src="images/11.svg"><!--/product_image--><!--product_title-->
-                <h4 class="u-align-center u-product-control u-text u-text-4">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 3 Title<!--/product_title_content--></a>
-                </h4><!--/product_title--><!--product_price-->
-                <div class="u-product-control u-product-price u-product-price-4">
-                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                    <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
-                  </div>
-                </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"remove"}--><!--/options_json-->
-                <a href="" class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-4"><!--product_button_content-->remove<!--/product_button_content--></a><!--/product_button-->
-              </div>
-            </div><!--/product_item-->
+            
           </div>
         </div><!--/products-->
       </div>
     </section>
     <section class="u-clearfix u-section-4" id="sec-6a64">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com/c/fashion-beauty-website-templates" class="u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-4-light-2 u-radius-50 u-btn-1">Add NEW product</a>
+        <a href="" class="u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-4-light-2 u-radius-50 u-btn-1">Add NEW product</a>
       </div>
     </section>
     
     
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-grey-80" id="sec-b725"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
+        <a href="empresa.php" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
           <img src="images/fdc97e8567fcff5ce1a325047710eb5f.png" class="u-logo-image u-logo-image-1">
         </a>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">

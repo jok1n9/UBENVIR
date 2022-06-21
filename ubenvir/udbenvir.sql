@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Jun-2022 às 21:52
+-- Tempo de geração: 21-Jun-2022 às 22:33
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -61,7 +61,8 @@ CREATE TABLE `companhia` (
   `endereco` text NOT NULL,
   `banco` int(11) NOT NULL,
   `descricao` text DEFAULT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `imagem` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,7 +108,8 @@ CREATE TABLE `temporaria` (
   `endereco` text NOT NULL,
   `banco` int(11) NOT NULL,
   `descricao` text DEFAULT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `imagem` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -190,7 +192,7 @@ ALTER TABLE `suporte`
 -- AUTO_INCREMENT de tabela `temporaria`
 --
 ALTER TABLE `temporaria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `users`

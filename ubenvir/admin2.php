@@ -19,7 +19,8 @@ if($_POST){
     $telemovel = $row["telemovel"];
     $banco = $row["banco"];
     $descricao = $row["descricao"];
-    $query = "insert into companhia (nome,email,username,password,endereco,telemovel,banco, descricao) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao')";
+    $imagem= $row["imagem"];
+    $query = "insert into companhia (nome,email,username,password,endereco,telemovel,banco, descricao, imagem) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao', '$imagem')";
     $result = mysqli_query($con, $query);
     $query= mysqli_query($con, "DELETE FROM temporaria where id='$product'");
 }

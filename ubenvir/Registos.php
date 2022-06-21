@@ -7,7 +7,11 @@ include("functions.php");
 $error_text = "";
 
 if ($_POST) {
-
+  $ImageName = $_FILES['photo']['name'];
+  $fileElementName = 'photo';
+  $path = 'images/'; 
+  $location = $path . $_FILES['photo']['name']; 
+  move_uploaded_file($_FILES['photo']['tmp_name'], $location);
   $nome = $_POST["nome"];
   $email = $_POST["email"];
   $username = $_POST["username"];
@@ -29,7 +33,7 @@ if ($_POST) {
       $query = "SELECT * FROM companhia WHERE username = '$username'";
       $result = mysqli_query($con, $query);
       if (mysqli_num_rows($result) == 0) {
-        $query = "insert into temporaria (nome,email,username,password,endereco,telemovel,banco, descricao) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao')";
+        $query = "insert into temporaria (nome,email,username,password,endereco,telemovel,banco, descricao, imagem) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao', '$location')";
         $result = mysqli_query($con, $query);
         header("Location: index.php");
         die;
@@ -82,7 +86,7 @@ if ($_POST) {
         <div class="u-align-center u-container-style u-expanded-width-xs u-group u-radius-30 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
             <div class="u-form u-form-1">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
               <input type="text" name="nome" placeholder="Nome Completo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="email" placeholder="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="username" placeholder="Username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
@@ -90,6 +94,7 @@ if ($_POST) {
               <input type="text" name="endereco" placeholder="endereco" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="telemovel" placeholder="N telemóvel" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="banco" placeholder="Numero Conta bancária" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" />
+              <input type="file" name="photo">
               <textarea rows = "5" cols = "60" name = "descricao" placeholder="Descricao"></textarea>
 
             <div class="text-center">

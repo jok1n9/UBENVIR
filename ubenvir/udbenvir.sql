@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Jun-2022 às 16:00
+-- Tempo de geração: 21-Jun-2022 às 20:25
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -38,8 +38,7 @@ CREATE TABLE `carrinho` (
 --
 
 INSERT INTO `carrinho` (`userid`, `productid`, `quantity`) VALUES
-(1, 8, 0),
-(1, 8, 0);
+(1, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -77,7 +76,7 @@ CREATE TABLE `companhia` (
 --
 
 INSERT INTO `companhia` (`Nome`, `username`, `email`, `password`, `telemovel`, `endereco`, `banco`, `descricao`, `id`) VALUES
-('Pingo Doce', 'pingo', 'j@gmail.com', 'pingo', 967123449, 'ffffr', 123455, 'Uma empresa muito bonita. Venha ao pingo doce de janeiro a janeiro.', 1);
+('Pingo Doce', 'j0k1n9', 'j@cd.com', 'dddd', 65757, 'ffff', 4567467, 'Pingo doce venha ca, de janeiro a janeiro.', 1);
 
 -- --------------------------------------------------------
 
@@ -90,15 +89,47 @@ CREATE TABLE `products` (
   `companhia` int(11) NOT NULL,
   `preco` decimal(10,0) NOT NULL,
   `comentário` text NOT NULL,
-  `nome` text NOT NULL
+  `nome` text NOT NULL,
+  `imagem` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `products`
 --
 
-INSERT INTO `products` (`id`, `companhia`, `preco`, `comentário`, `nome`) VALUES
-(8, 1, '1', '1 kg de peras fresquinhas', 'Peras');
+INSERT INTO `products` (`id`, `companhia`, `preco`, `comentário`, `nome`, `imagem`) VALUES
+(11, 1, '12', 'fsfsfs', 'asa', 'images/287767325_2585477301588282_4545227680151810091_n.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `suporte`
+--
+
+CREATE TABLE `suporte` (
+  `id` int(11) NOT NULL,
+  `nome` text NOT NULL,
+  `descricao` text NOT NULL,
+  `email` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `temporaria`
+--
+
+CREATE TABLE `temporaria` (
+  `Nome` text NOT NULL,
+  `username` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  `telemovel` int(9) NOT NULL,
+  `endereco` text NOT NULL,
+  `banco` int(11) NOT NULL,
+  `descricao` text DEFAULT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -125,7 +156,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Nome`, `email`, `username`, `password`, `endereco`, `telemovel`, `nif`, `credito`, `datacc`, `3numcc`, `id`) VALUES
-('joaquim', 'a@gmail.com', 'j0k1n9', 'dddd', 'ffff', 967123449, 333, NULL, NULL, NULL, 1);
+('joaquim', 'a@dffgg.com', 'dfgeg', 'dddd', 'ffff', 345, 3453, NULL, NULL, NULL, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -141,6 +172,18 @@ ALTER TABLE `companhia`
 -- Índices para tabela `products`
 --
 ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `suporte`
+--
+ALTER TABLE `suporte`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `temporaria`
+--
+ALTER TABLE `temporaria`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -163,7 +206,19 @@ ALTER TABLE `companhia`
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de tabela `suporte`
+--
+ALTER TABLE `suporte`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `temporaria`
+--
+ALTER TABLE `temporaria`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `users`

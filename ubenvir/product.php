@@ -16,8 +16,14 @@ if($_POST){
   
   $product = htmlspecialchars($_POST['productid']);
   $userid = htmlspecialchars($_POST['userid']);
-  $query = "insert into carrinho (productid, userid) values ('$product', '$userid')";
+  $query = "SELECT * FROM carrinho WHERE productid = '$product'";
   $result = mysqli_query($con, $query);
+  if(mysqli_num_rows($result) == 0){
+    $query = "insert into carrinho (productid, userid, quantity) values ('$product', '$userid', '1')";
+    $result = mysqli_query($con, $query);
+  }else{
+    $error_text = "já adicionado";
+  }
 }
 
 ?>
@@ -79,7 +85,7 @@ if($_POST){
               <div class="u-carousel-inner u-gallery-inner" role="listbox"><!--product_gallery_item-->
                 <div class="u-active u-carousel-item u-gallery-item">
                   <div class="u-back-slide">
-                    <img class="u-back-image u-expanded" src="images/12.svg">
+                    <img class="u-back-image u-expanded" src="<?php echo $result2['imagem'];?>">
                   </div>
                   <div class="u-over-slide u-over-slide-1">
                     <h3 class="u-gallery-heading">Sample Title</h3>
@@ -88,7 +94,7 @@ if($_POST){
                 </div><!--/product_gallery_item--><!--product_gallery_item-->
                 <div class="u-carousel-item u-gallery-item">
                   <div class="u-back-slide">
-                    <img class="u-back-image u-expanded" src="images/8.svg">
+                    <img class="u-back-image u-expanded" src="<?php echo $result2['imagem'];?>">
                   </div>
                   <div class="u-over-slide u-over-slide-2">
                     <h3 class="u-gallery-heading">Sample Title</h3>
@@ -118,10 +124,10 @@ if($_POST){
               </a>
               <ol class="u-carousel-thumbnails u-spacing-20 u-carousel-thumbnails-1"><!--product_gallery_thumbnail-->
                 <li class="u-active u-carousel-thumbnail u-carousel-thumbnail-1" data-u-target="#carousel-6016" data-u-slide-to="0">
-                  <img class="u-carousel-thumbnail-image u-image" src="images/12.svg">
+                  <img class="u-carousel-thumbnail-image u-image" src="<?php echo $result2['imagem'];?>">
                 </li><!--/product_gallery_thumbnail--><!--product_gallery_thumbnail-->
                 <li class="u-carousel-thumbnail u-carousel-thumbnail-2" data-u-target="#carousel-6016" data-u-slide-to="1">
-                  <img class="u-carousel-thumbnail-image u-image" src="images/8.svg">
+                  <img class="u-carousel-thumbnail-image u-image" src="<?php echo $result2['imagem'];?>">
                 </li><!--/product_gallery_thumbnail-->
               </ol>
             </div><!--/product_gallery--><!--product_title-->

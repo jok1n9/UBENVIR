@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+if($_POST){
+  $id = htmlspecialchars($_POST['id']);
+  $query= mysqli_query($con, "DELETE FROM suporte where id='$id'");
+}
+?>
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -52,35 +63,33 @@
               </tr>
             </thead>
             <tbody class="u-table-body">
-              <tr style="height: 75px;">
-                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5">Row 1</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+              
+            <?php
+            $result = mysqli_query($con, "SELECT * FROM suporte");
+            while ($row = mysqli_fetch_array($result)) { 
+            ?>
+            <tr style="height: 75px;">
+                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-5"><?php echo $row['nome'];?></td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell"><?php echo $row['descricao'];?></td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell"><?php echo $row['email'];?></td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell">
+                <form method="post">
+                  <div>
+                    <input type="hidden" name="id" id="id" Value="<?php echo $row['id'];?>" ></input>
+                  </div>
+                    <div>
+                      <button class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Delete</input>
+                    </div>
+                 </form>
+</td>
               </tr>
-              <tr style="height: 76px;">
-                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-9">Row 2</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
-              </tr>
-              <tr style="height: 76px;">
-                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-13">Row 3</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-              </tr>
-              <tr style="height: 76px;">
-                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-17">Row 4</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-              </tr>
+
+            <?php
+            }
+            ?>
             </tbody>
           </table>
         </div>
-        <a href="https://nicepage.cloud" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1">send mail</a>
-        <a href="https://nicepage.cloud" class="u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-2">Botão</a>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-3" id="sec-d512">

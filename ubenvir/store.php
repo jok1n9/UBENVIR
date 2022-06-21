@@ -10,8 +10,14 @@ if($_POST){
   
   $product = htmlspecialchars($_POST['productid']);
   $userid = htmlspecialchars($_POST['userid']);
-  $query = "insert into carrinho (productid, userid) values ('$product', '$userid')";
+  $query = "SELECT * FROM carrinho WHERE productid = '$product'";
   $result = mysqli_query($con, $query);
+  if(mysqli_num_rows($result) == 0){
+    $query = "insert into carrinho (productid, userid, quantity) values ('$product', '$userid', '1')";
+    $result = mysqli_query($con, $query);
+  }else{
+    $error_text = "já adicionado";
+  }
 }
 ?>
 
@@ -103,7 +109,7 @@ if($_POST){
             <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-1" data-href="redirect2.php?id=<?php echo $row['id']; ?>" data-page-id="1870824071">
             
               <div class="u-container-layout u-similar-container u-container-layout-1"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1" src="images/7.svg"><!--/product_image--><!--product_title-->
+                <img alt="" src="<?php echo $row['imagem'];?>" class="u-expanded-width u-image u-image-default u-product-control u-image-1" src="images/7.svg"><!--/product_image--><!--product_title-->
                 <h4 class="u-product-control u-text u-text-1">
                   <a class="u-product-title-link" href=""><!--product_title_content--><?php echo $row['nome'];?><!--/product_title_content--></a>
                 </h4><!--/product_title--><!--product_content-->

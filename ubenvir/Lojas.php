@@ -84,8 +84,10 @@ if ($_POST) {
             <div class="u-align-center u-container-style u-list-item u-repeater-item">
               <a href="redirect.php?companhia=<?php echo $row['id']; ?>">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                <div alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="774"></div>
-                <h4 class="u-align-center u-text u-text-default u-text-3"><?php echo $row['username'];?></h4>
+                <div alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="774">
+                  
+                </div>
+                <h4 class="u-align-center u-text u-text-default u-text-3"><?php echo $row['Nome'];?></h4>
                 
                 <p class="u-text u-text-5"><?php echo $row['descricao'];?></p>
                 <div class="u-social-icons u-spacing-10 u-social-icons-1">

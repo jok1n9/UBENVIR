@@ -29,9 +29,9 @@ if ($_POST) {
       $query = "SELECT * FROM companhia WHERE username = '$username'";
       $result = mysqli_query($con, $query);
       if (mysqli_num_rows($result) == 0) {
-        $query = "insert into companhia (nome,email,username,password,endereco,telemovel,banco, descricao) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao')";
+        $query = "insert into temporaria (nome,email,username,password,endereco,telemovel,banco, descricao) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao')";
         $result = mysqli_query($con, $query);
-        header("Location: empresa.php");
+        header("Location: index.php");
         die;
       } else {
         $error_text = "User already exists!";

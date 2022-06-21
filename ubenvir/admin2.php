@@ -1,3 +1,41 @@
+<?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+if($_POST){
+  
+  if(isset($_POST['productid'])){
+    $product = htmlspecialchars($_POST['productid']);
+    $query= "SELECT * FROM temporaria where id='$product'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_array($result);
+    $nome = $row["Nome"];
+    $email = $row["email"];
+    $username = $row["username"];
+    $password = $row["password"];
+    $endereco = $row["endereco"];
+    $telemovel = $row["telemovel"];
+    $banco = $row["banco"];
+    $descricao = $row["descricao"];
+    $query = "insert into companhia (nome,email,username,password,endereco,telemovel,banco, descricao) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao')";
+    $result = mysqli_query($con, $query);
+    $query= mysqli_query($con, "DELETE FROM temporaria where id='$product'");
+}
+if(isset($_POST['productid2'])){
+    $product = htmlspecialchars($_POST['productid2']);
+  
+    $query= mysqli_query($con, "DELETE FROM temporaria where id='$product'");
+
+  
+  
+}
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -56,25 +94,44 @@
             </thead>
             <tbody class="u-table-body">
 
-
+            <?php
+            $result = mysqli_query($con, "SELECT * FROM temporaria");
+            while ($row = mysqli_fetch_array($result)) { 
+            ?>
 
               <tr style="height: 75px;">
-                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-4">Row 1</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-4"><?php echo $row['Nome'];?></td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell"><?php echo $row['descricao'];?></td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell"><?php echo $row['email'];?></td>
               </tr>
               <tr style="height: 76px;">
                 <td class="u-border-0 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-7">Aceitar empresa?</td>
                 <td class="u-border-0 u-border-grey-30 u-table-cell">
-                  <a class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1" href="https://nicepage.com">Sim</a>
+                <form method="post">
+                <div>
+                  <input type="hidden" name="productid" id="productid" Value="<?php echo $row['id'];?>" ></input>
+                </div>
+                <div>
+                <button class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Sim</input>
+                </div>
+                 </form>
                 </td>
                 <td class="u-border-0 u-border-grey-30 u-table-cell">
-                  <a class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-2" href="https://nicepage.com">Não</a>
+                <form method="post">
+                <div>
+                  <input type="hidden" name="productid2" id="productid" Value="<?php echo $row['id'];?>" ></input>
+                </div>
+                <div>
+                <button class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Não</input>
+                </div>
+                 </form>
                 </td>
               </tr>
             
-              
-              
+            <?php
+              }
+            ?>
+
             </tbody>
           </table>
         </div>

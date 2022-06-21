@@ -87,7 +87,7 @@ if ($_POST) {
 
             <div class="u-align-center u-container-style u-products-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1" src="images/8.svg"><!--/product_image--><!--product_title-->
+                <img alt="" src="<?php echo $row['imagem'];?>" class="u-expanded-width u-image u-image-default u-product-control u-image-1" src="images/8.svg"><!--/product_image--><!--product_title-->
                 <h4 class="u-align-center u-product-control u-text u-text-1">
                   <a class="u-product-title-link" href="#"><!--product_title_content--><?php echo $row['nome'];?><!--/product_title_content--></a>
                 </h4><!--/product_title--><!--product_price-->

@@ -9,12 +9,17 @@ $user_data = check_login_empresas($con);
 $produto = $user_data['id'];
 
 if ($_POST) {
+  $ImageName = $_FILES['photo']['name'];
+  $fileElementName = 'photo';
+  $path = 'images/'; 
+  $location = $path . $_FILES['photo']['name']; 
+  move_uploaded_file($_FILES['photo']['tmp_name'], $location); 
   $nome = $_POST["nome"];
   $preco = $_POST["preco"];
   $comentario = $_POST["comentario"];
   if (!empty($nome) && !empty($preco) &&!empty($comentario) && is_numeric($preco)) {
 
-        $query = "insert into products (nome,companhia, preco, comentário) values ('$nome','$produto','$preco','$comentario')";
+        $query = "insert into products (nome,companhia, preco, comentário,imagem) values ('$nome','$produto','$preco','$comentario', '$location')";
         $result = mysqli_query($con, $query);
         header("Location: empresa.php");
         die; 
@@ -65,14 +70,18 @@ if ($_POST) {
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-default u-text-1">Adicionar Produto</h2>
         <div class="u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px">
+          <form action="addproduct.php" enctype="multipart/form-data" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px">
               
               <input type="text" name="nome" placeholder="Nome" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               
               <input type="text" name="preco" placeholder="Preco"  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               
+              <input type="file" name="photo">
+              
+              
               <textarea rows = "5" cols = "60" name = "comentario" placeholder="Comentario"></textarea>
               
+
               <input class="button" type="submit" value="Add product">
           </form>
         </div>

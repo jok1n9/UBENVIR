@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+$user_data = check_login($con);
+
+if($_POST) {
+  $nome=$user_data["Nome"];
+  $descricao= $_POST["message"];
+  $email=$user_data["email"];
+  if (!empty($nome) && !empty($descricao) &&!empty($email)) {
+    $query = "insert into suporte (nome, descricao, email) values ('$nome', '$descricao', '$email')";
+    $result = mysqli_query($con, $query);
+    header("Location: Lojas.php");
+  }
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -60,18 +83,13 @@
                   <div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-3">
                     <div class="u-container-layout u-container-layout-3">
                       <div class="u-form u-form-1">
-                        <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="email" name="form-4">
-                          <div class="u-form-group u-form-message u-label-left">
-                            <label for="message-e2a4" class="u-label">Message</label>
-                            <textarea placeholder="Enter your message" rows="4" cols="50" id="message-e2a4" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
+                        <form method="post">
+                         
+                          <textarea rows = "5" cols = "60" name = "message" placeholder="Descreva o seu problema"></textarea>                          </div>
+                          <div >
+                          <input class="button" type="submit" value="Enviar Mensagem">
+                            
                           </div>
-                          <div class="u-form-group u-form-submit">
-                            <a href="#" class="u-btn u-btn-submit u-button-style u-palette-2-base u-btn-1">Submit</a>
-                            <input type="submit" value="submit" class="u-form-control-hidden">
-                          </div>
-                          <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                          <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                          <input type="hidden" value="" name="recaptchaResponse">
                         </form>
                       </div>
                     </div>
@@ -81,7 +99,7 @@
             </div>
           </div>
         </div>
-        <a href="Lojas.html" data-page-id="46100724" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-custom-color-2 u-radius-6 u-btn-2">Back to homepage</a>
+        <a href="Lojas.php" data-page-id="46100724" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-hover-custom-color-2 u-radius-6 u-btn-2">Back to homepage</a>
       </div>
     </section>
     

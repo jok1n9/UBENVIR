@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Jun-2022 às 20:25
+-- Tempo de geração: 21-Jun-2022 às 21:52
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -32,13 +32,6 @@ CREATE TABLE `carrinho` (
   `productid` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `carrinho`
---
-
-INSERT INTO `carrinho` (`userid`, `productid`, `quantity`) VALUES
-(1, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -71,13 +64,6 @@ CREATE TABLE `companhia` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `companhia`
---
-
-INSERT INTO `companhia` (`Nome`, `username`, `email`, `password`, `telemovel`, `endereco`, `banco`, `descricao`, `id`) VALUES
-('Pingo Doce', 'j0k1n9', 'j@cd.com', 'dddd', 65757, 'ffff', 4567467, 'Pingo doce venha ca, de janeiro a janeiro.', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -92,13 +78,6 @@ CREATE TABLE `products` (
   `nome` text NOT NULL,
   `imagem` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `products`
---
-
-INSERT INTO `products` (`id`, `companhia`, `preco`, `comentário`, `nome`, `imagem`) VALUES
-(11, 1, '12', 'fsfsfs', 'asa', 'images/287767325_2585477301588282_4545227680151810091_n.jpg');
 
 -- --------------------------------------------------------
 
@@ -152,13 +131,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `users`
---
-
-INSERT INTO `users` (`Nome`, `email`, `username`, `password`, `endereco`, `telemovel`, `nif`, `credito`, `datacc`, `3numcc`, `id`) VALUES
-('joaquim', 'a@dffgg.com', 'dfgeg', 'dddd', 'ffff', 345, 3453, NULL, NULL, NULL, 1);
-
---
 -- Índices para tabelas despejadas
 --
 
@@ -200,13 +172,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `companhia`
 --
 ALTER TABLE `companhia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `suporte`
@@ -224,7 +196,7 @@ ALTER TABLE `temporaria`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

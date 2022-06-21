@@ -63,7 +63,7 @@ if ($_POST) {
 		c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233
 		c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"></path>
 </g></svg></span>
-        <a href="indedx.php" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2"><?php echo $user_data['Nome'];?></a>
+        <a href="redirect3.php" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2"><?php echo $user_data['Nome'];?></a>
       </div>
     </section>
     <section class="u-align-left u-clearfix u-section-2" id="sec-0340">

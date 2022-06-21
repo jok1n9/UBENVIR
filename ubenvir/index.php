@@ -73,7 +73,7 @@
     
     
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-grey-80" id="sec-b725"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
+        <a href="indedx.php" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
           <img src="images/fdc97e8567fcff5ce1a325047710eb5f.png" class="u-logo-image u-logo-image-1">
         </a>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">

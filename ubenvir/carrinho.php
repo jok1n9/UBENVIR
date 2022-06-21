@@ -10,10 +10,18 @@ $user_data = check_login($con);
 
 if($_POST) {
   $var = $_POST['counter'];
-  echo $var;
-  while($var != 0) {
-    $quantity = $_POST['$var'];
-  }
+  $var2= 1;
+  $user_id = $user_data["id"];
+  $products = mysqli_query($con, "SELECT * FROM carrinho WHERE userid = $user_id");
+
+    while ($row = mysqli_fetch_array($products)) {
+      $quantity= $_POST[$var2];
+      $id=$row['productid'];
+      $result = mysqli_query($con, "UPDATE carrinho SET quantity='$quantity' where productid = '$id'");
+      $var2=$var2+1;
+    }
+    
+  
 }
 
 
@@ -52,7 +60,7 @@ if($_POST) {
     <section class="u-clearfix u-section-1" id="sec-259e">
       <div class="u-clearfix u-sheet u-sheet-1">
         <img class="u-image u-image-default u-image-1" src="images/947ea8f2999b07da1da8b4b5f2dd955e.png" alt="" data-image-width="415" data-image-height="122">
-        <a href="https://nicepage.com/c/sports-html-templates" class="u-btn u-btn-round u-button-style u-gradient u-none u-radius-4 u-text-body-alt-color u-btn-1">CALL US</a><span class="u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 53 53" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9d85"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 53 53" x="0px" y="0px" id="svg-9d85" style="enable-background:new 0 0 53 53;"><path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53
+        <a href="suporte.php" class="u-btn u-btn-round u-button-style u-gradient u-none u-radius-4 u-text-body-alt-color u-btn-1">CALL US</a><span class="u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 53 53" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9d85"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 53 53" x="0px" y="0px" id="svg-9d85" style="enable-background:new 0 0 53 53;"><path style="fill:#E7ECED;" d="M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53
 	c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322
 	c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546
 	c0-0.78-0.347-1.477-0.886-1.965v-5.126c0,0,1.053-7.977-9.75-7.977s-9.75,7.977-9.75,7.977v5.126
@@ -64,7 +72,7 @@ if($_POST) {
 		c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233
 		c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"></path>
 </g></svg></span>
-        <a href="https://nicepage.com/c/slider-html-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Joaquim</a>
+        <a href="redirect3.php" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">Joaquim</a>
       </div>
     </section>
     <section class="u-clearfix u-section-2" id="sec-eaa5">
@@ -86,7 +94,7 @@ if($_POST) {
                   <th class="u-border-1 u-border-grey-dark-1 u-table-cell">Subtotal </th>
                 </tr>
               </thead>
-              <form>
+              <form method="post">
               
               <tbody class="u-table-body">                
                   
@@ -100,6 +108,7 @@ if($_POST) {
                       $product = mysqli_query($con, "SELECT * FROM products WHERE id = $product_id");
                       $info = mysqli_fetch_array($product);
                       $counter = $counter + 1;
+                      $counterid= $counter+1;
                   ?>
               
                   <tr style="height: 121px;">
@@ -139,7 +148,8 @@ if($_POST) {
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
                         </a>
                         <input name="<?php echo $counter; ?>" class="u-border-grey-30 u-input" type="text" value=<?php echo $row['quantity']; ?> pattern="[0-9]+">
-                        <input type = "hidden" name = "<?php echo $counter; ?>" value = "<?php echo $row['productid']; ?>"> 
+                        
+                        <input type = "hidden" name = "<?php echo $counterid; ?>?" value = "<?php echo $row['productid']; ?>"> 
                         <a class="plus u-button-style u-hidden u-quantity-button">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m 4 8 h 8 M 8 4 v 8" fill="none" stroke="currentColor" stroke-width="1" fill-rule="evenodd"></path></svg>
                         </a>
@@ -170,18 +180,12 @@ if($_POST) {
               </tbody>
             </table>
           </div>
-          <div class="u-cart-button-container">
-            <a href="Lojas.php" class="u-active-none u-btn u-button-style u-cart-continue-shopping u-hover-none u-none u-text-body-color u-btn-1"><span class="u-icon"><svg class="u-svg-content" viewBox="0 0 443.52 443.52" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><path d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8    c-6.662,6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,24.132-0.42c6.387-6.614,6.387-17.099,0-23.712    L143.492,221.863z"></path>
-</g>
-</g></svg><img></span>&nbsp;Continue Shopping 
-            </a>
+          
             <div>
               <input type = "hidden" name = "counter" value = "<?php echo $counter; ?>"> 
                   </div>  
-            <button
-             class="u-btn u-button-style u-cart-update u-grey-5"
-             
-             >Update Cart
+            <button type="submit" class="u-btn u-button-style u-cart-update u-grey-5"
+            >Update Cart
             </button>            
           </div>
             </form>
@@ -241,7 +245,7 @@ if($_POST) {
     
     
     <footer class="u-align-center-md u-align-center-sm u-align-center-xs u-clearfix u-footer u-grey-80" id="sec-b725"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
+        <a href="Lojas.php" class="u-image u-logo u-image-1" data-image-width="214" data-image-height="235">
           <img src="images/fdc97e8567fcff5ce1a325047710eb5f.png" class="u-logo-image u-logo-image-1">
         </a>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">

@@ -6,11 +6,11 @@ include("functions.php");
 
 $user_data = check_login($con);
 $produto = $_SESSION['companhia'];
-if ($_POST) {
-
-}
-if(array_key_exists('button1', $_POST)) {
-  $query = "insert into carrinho (banco) values ('$banco')";
+if($_POST){
+  
+  $product = htmlspecialchars($_POST['productid']);
+  $userid = htmlspecialchars($_POST['userid']);
+  $query = "insert into carrinho (productid, userid) values ('$product', '$userid')";
   $result = mysqli_query($con, $query);
 }
 ?>
@@ -113,7 +113,17 @@ if(array_key_exists('button1', $_POST)) {
                     <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content--><?php echo $row['preco'];?>€<!--/product_regular_price_content--></div><!--/product_regular_price-->
                   </div>
                 </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":""}--><!--/options_json-->
-                
+                <form method="post">
+              <div>
+                <input type="hidden" name="productid" id="productid" Value="<?php echo $row['id'];?>" ></input>
+              </div>
+              <div>
+                <input type="hidden" name="userid" id="userid" Value="<?php echo $user_data['id'];?>" ></input>
+              </div>
+              <div>
+                <button class="u-black u-btn u-button-style u-product-control u-btn-1">Add to Cart</input>
+              </div>
+            </form>
               </div>
               
             </div><!--/product_item--><!--product_item-->

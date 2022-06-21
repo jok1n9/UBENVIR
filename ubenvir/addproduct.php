@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+$error_text = "";
+$user_data = check_login_empresas($con);
+$produto = $user_data['id'];
+
+if ($_POST) {
+  $nome = $_POST["nome"];
+  $preco = $_POST["preco"];
+  $comentario = $_POST["comentario"];
+  if (!empty($nome) && !empty($preco) &&!empty($comentario) && is_numeric($preco)) {
+
+        $query = "insert into products (nome,companhia, preco, comentário) values ('$nome','$produto','$preco','$comentario')";
+        $result = mysqli_query($con, $query);
+        header("Location: empresa.php");
+        die; 
+  } else {
+    $error_text = "Please enter some valid information!";
+  }
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -36,29 +65,18 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-default u-text-1">Adicionar Produto</h2>
         <div class="u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px" source="email" name="form">
-            <div class="u-form-group u-form-name u-label-none">
-              <label for="name-3b9a" class="u-label">Name</label>
-              <input type="text" placeholder="Nome do Produto" id="name-3b9a" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-email u-form-group u-label-none">
-              <label for="email-3b9a" class="u-label">Email</label>
-              <input type="email" placeholder="Preco do Produto" id="email-3b9a" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-group u-form-message u-label-none">
-              <label for="message-3b9a" class="u-label">Message</label>
-              <textarea placeholder="Descricao do Produto" rows="4" cols="50" id="message-3b9a" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
-            </div>
-            <div class="u-align-left u-form-group u-form-submit">
-              <a href="#" class="u-btn u-btn-submit u-button-style">Submit</a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
-            </div>
-            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-            <input type="hidden" value="" name="recaptchaResponse">
+          <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px">
+              
+              <input type="text" name="nome" placeholder="Nome" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              
+              <input type="text" name="preco" placeholder="Preco"  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              
+              <textarea rows = "5" cols = "60" name = "comentario" placeholder="Comentario"></textarea>
+              
+              <input class="button" type="submit" value="Add product">
           </form>
         </div>
-        <a href="https://nicepage.com/c/fashion-beauty-website-templates" class="u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-4-light-2 u-radius-50 u-btn-2">Back to homepage</a>
+        <a href="empresa.php" class="u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-4-light-2 u-radius-50 u-btn-2">Back to homepage</a>
       </div>
     </section>
     

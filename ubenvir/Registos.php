@@ -15,13 +15,13 @@ if ($_POST) {
   $endereco = $_POST["endereco"];
   $telemovel = $_POST["telemovel"];
   $banco = $_POST["banco"];
-
+  $descricao = $_POST["descricao"];
 
   $username = mysqli_real_escape_string($con, $username);
   $password = mysqli_real_escape_string($con, $password);
 
 
-  if (!empty($username) && !empty($password) &&!empty($nome) && !empty($telemovel) &&!empty($endereco)&& is_numeric($banco) && !is_numeric($username) && is_numeric($telemovel)) {
+  if (!empty($username)&& !empty($descricao) && !empty($password) &&!empty($nome) && !empty($telemovel) &&!empty($endereco)&& is_numeric($banco) && !is_numeric($username) && is_numeric($telemovel)) {
     if (!preg_match('/\s/', $username)) {
       $username = xss_countermeasure($username);
       $password = xss_countermeasure($password);
@@ -29,7 +29,7 @@ if ($_POST) {
       $query = "SELECT * FROM companhia WHERE username = '$username'";
       $result = mysqli_query($con, $query);
       if (mysqli_num_rows($result) == 0) {
-        $query = "insert into companhia (nome,email,username,password,endereco,telemovel,banco) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco')";
+        $query = "insert into companhia (nome,email,username,password,endereco,telemovel,banco, descricao) values ('$nome','$email','$username','$password','$endereco','$telemovel','$banco', '$descricao')";
         $result = mysqli_query($con, $query);
         header("Location: empresa.php");
         die;
@@ -83,14 +83,15 @@ if ($_POST) {
           <div class="u-container-layout u-container-layout-1">
             <div class="u-form u-form-1">
             <form method="post">
-              <input type="text" name="nome" placeholder="Nome Completo" />
-              <input type="text" name="email" placeholder="email" />
-              <input type="text" name="username" placeholder="Username" />
-              <input type="text" name="password" placeholder="Password" />
-              <input type="text" name="endereco" placeholder="endereco" />
-              <input type="text" name="telemovel" placeholder="N telemóvel" />
-              <input type="text" name="banco" placeholder="Numero Conta bancária" />
-         
+              <input type="text" name="nome" placeholder="Nome Completo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              <input type="text" name="email" placeholder="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              <input type="text" name="username" placeholder="Username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              <input type="text" name="password" placeholder="Password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              <input type="text" name="endereco" placeholder="endereco" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              <input type="text" name="telemovel" placeholder="N telemóvel" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              <input type="text" name="banco" placeholder="Numero Conta bancária" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" />
+              <textarea rows = "5" cols = "60" name = "descricao" placeholder="Descricao"></textarea>
+
             <div class="text-center">
               <?php
               echo "<p style='color: red;'>$error_text</p>";

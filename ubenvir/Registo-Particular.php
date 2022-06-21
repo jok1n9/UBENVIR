@@ -83,13 +83,13 @@ if ($_POST) {
         <div class="u-align-center u-container-style u-expanded-width-xs u-group u-radius-30 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
           <form method="post">
-          <input type="text" name="nome" placeholder="Nome Completo" />
-          <input type="text" name="email" placeholder="email" />
-          <input type="text" name="username" placeholder="Username" />
-          <input type="text" name="password" placeholder="Password" />
-          <input type="text" name="endereco" placeholder="endereco" />
-          <input type="text" name="telemovel" placeholder="N telemóvel" />
-          <input type="text" name="nif" placeholder="Nif" />
+          <input type="text" name="nome" placeholder="Nome Completo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" />
+          <input type="text" name="email" placeholder="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+          <input type="text" name="username" placeholder="Username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+          <input type="text" name="password" placeholder="Password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+          <input type="text" name="endereco" placeholder="endereco" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+          <input type="text" name="telemovel" placeholder="N telemóvel" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+          <input type="text" name="nif" placeholder="Nif" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" />
          
           <div class="text-center">
             <?php

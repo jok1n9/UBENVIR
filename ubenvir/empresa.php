@@ -1,3 +1,22 @@
+<?php
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+$user_data = check_login_empresas($con);
+$produto = $user_data['id'];
+if ($_POST) {
+  $product = htmlspecialchars($_POST['productid']);
+  $query = "DELETE FROM products where id= '$product'";
+  $result = mysqli_query($con, $query);
+  $query = "DELETE FROM carrinho where productid= '$product'";
+  $result = mysqli_query($con, $query);
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -44,15 +63,15 @@
 		c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233
 		c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"></path>
 </g></svg></span>
-        <a href="https://nicepage.com/c/slider-html-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2">empresa</a>
+        <a href="indedx.php" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-btn u-button-style u-none u-text-palette-1-base u-btn-2"><?php echo $user_data['Nome'];?></a>
       </div>
     </section>
     <section class="u-align-left u-clearfix u-section-2" id="sec-0340">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
-          <h1 style="text-align: left;">Loja n1</h1>
+          <h1 style="text-align: left;"><?php echo $user_data['Nome'];?></h1>
           <p style="text-align: left;">
-            <span style="line-height: 2.0;">Sample text. Click to select the text box. Click again or double click to start editing the text. Dictum non consectetur a erat nam at. Aliquam malesuada bibendum arcu vitae elementum curabitur vitae. Tellus mauris a diam maecenas sed enim ut sem. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Pretium nibh ipsum consequat nisl vel pretium. In eu mi bibendum neque egestas congue. Vitae ultricies leo integer malesuada nunc. Nibh praesent tristique magna sit amet purus gravida. Diam volutpat commodo sed egestas. Gravida dictum fusce ut placerat orci nulla pellentesque.</span>
+            <span style="line-height: 2.0;"><?php echo $user_data['descricao'];?></span>
           </p>
         </div>
       </div>
@@ -61,29 +80,44 @@
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1"><!--products--><!--products_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/products_options_json-->
         <div class="u-expanded-width u-products u-products-1">
           <div class="u-repeater u-repeater-1"><!--product_item-->
+          <?php
+            $result = mysqli_query($con, "SELECT * FROM products where companhia = '$produto'");
+            while ($row = mysqli_fetch_array($result)) { 
+          ?>
+
             <div class="u-align-center u-container-style u-products-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><!--product_image-->
                 <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1" src="images/8.svg"><!--/product_image--><!--product_title-->
                 <h4 class="u-align-center u-product-control u-text u-text-1">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 1 Title<!--/product_title_content--></a>
+                  <a class="u-product-title-link" href="#"><!--product_title_content--><?php echo $row['nome'];?><!--/product_title_content--></a>
                 </h4><!--/product_title--><!--product_price-->
                 <div class="u-product-control u-product-price u-product-price-1">
                   <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
                     <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
+                    <div class="u-price u-text-palette-2-base" style="font-size: 1.25rem; font-weight: 700;"><!--product_regular_price_content--><?php echo $row['preco'];?>€<!--/product_regular_price_content--></div><!--/product_regular_price-->
                   </div>
                 </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"remove"}--><!--/options_json-->
-                <a href="" class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-1"><!--product_button_content-->remove<!--/product_button_content--></a><!--/product_button-->
+                <form method="post">
+                  <div>
+                    <input type="hidden" name="productid" id="productid" Value="<?php echo $row['id'];?>" ></input>
+                  </div>
+                  <div>
+                    <button class="u-border-2 u-border-grey-25 u-btn u-btn-rectangle u-button-style u-none u-product-control u-text-body-color u-btn-1">Remove</button>
+                  </div>
+                </form>  
               </div>
+                
             </div><!--/product_item--><!--product_item-->
-            
+          <?php
+            }
+          ?> 
           </div>
         </div><!--/products-->
       </div>
     </section>
     <section class="u-clearfix u-section-4" id="sec-6a64">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <a href="" class="u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-4-light-2 u-radius-50 u-btn-1">Add NEW product</a>
+        <a href="addproduct.php" class="u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-2 u-palette-4-light-2 u-radius-50 u-btn-1">Add NEW product</a>
       </div>
     </section>
     

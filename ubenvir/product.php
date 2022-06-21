@@ -8,8 +8,15 @@ $user_data = check_login($con);
 $produto = $_SESSION['id'];
 $result = mysqli_query($con, "SELECT * FROM products where id = '$produto'");
 $result2= mysqli_fetch_array($result);
-if ($_POST) {
-  #$query = "insert into carrinho (productid, userid) values ($result2['id'], $user_data['id'])";
+$productid=$result2['id'];
+  #$query = "insert into carrinho (productid, userid) values ($productid, $userid)";
+  #$result = mysqli_query($con, $query);
+
+if($_POST){
+  
+  $product = htmlspecialchars($_POST['productid']);
+  $userid = htmlspecialchars($_POST['userid']);
+  $query = "insert into carrinho (productid, userid) values ('$product', '$userid')";
   $result = mysqli_query($con, $query);
 }
 
@@ -132,8 +139,17 @@ if ($_POST) {
               <p><?php echo $result2['comentário'];?></p><!--/product_content_content-->
             </div><!--/product_content--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":""}--><!--/options_json-->
             <form method="post">
-            <input type=submit placeholder="Add to Cart" class="u-black u-btn u-button-style u-product-control u-btn-1">
+              <div>
+                <input type="hidden" name="productid" id="productid" Value="<?php echo $result2['id'];?>" ></input>
+              </div>
+              <div>
+                <input type="hidden" name="userid" id="userid" Value="<?php echo $user_data['id'];?>" ></input>
+              </div>
+              <div>
+                <button class="u-black u-btn u-button-style u-product-control u-btn-1">Add to Cart</input>
+              </div>
             </form>
+            
             <a href="carrinho.php" class="u-border-2 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-btn-round u-button-style u-none u-radius-50 u-btn-2"><span class="u-icon u-text-palette-1-base u-icon-1"><svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><circle cx="181.333" cy="437.333" r="53.333"></circle><path d="M509.867,89.6c-2.133-2.133-4.267-4.267-8.533-4.267H96L85.333,29.867c-2.133-4.267-6.4-8.533-10.667-8.533h-64 C4.267,21.333,0,25.6,0,32s4.267,10.667,10.667,10.667h55.467l51.2,260.267c8.533,34.133,38.4,59.733,74.667,59.733h245.333 c6.4,0,10.667-4.267,10.667-10.667c0-6.4-4.267-10.667-10.667-10.667H192c-17.067,0-34.133-8.533-42.667-23.467L460.8,275.2 c4.267,0,8.533-4.267,8.533-8.533L512,96C512,96,512,91.733,509.867,89.6z"></path><circle cx="394.667" cy="437.333" r="53.333"></circle></svg><img></span>
             </a>
           </div>

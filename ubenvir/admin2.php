@@ -1,47 +1,19 @@
-<?php
-session_start();
-
-include("connection.php");
-include("functions.php");
-
-$error_text = "";
-
-if ($_POST) {
-  $username = $_POST["username"];
-  $pass = $_POST["password"];
-  $query = "SELECT * FROM companhia WHERE username = '$username' 
-    AND password = '$pass'";
-  if($_POST["username"]== "admin@"){
-    header("Location: admin.php");
-  }
-
-
-  $result = mysqli_query($con, $query);
-  if (mysqli_num_rows($result) == 1) {
-    $user_data = mysqli_fetch_assoc($result);
-    $_SESSION['user_id'] = $user_data['id'];
-    header("Location: empresa.php");
-    die;
-  } else {
-    $error_text = "Incorrect Username or Password";
-  }
-}
-
-?>
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Registo">
+    <meta name="keywords" content="Obrigado por escolher o nosso servico.A sua escolha salva o planeta.">
     <meta name="description" content="">
-    <title>Login</title>
+    <title>compra concluida</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Login.css" media="screen">
+<link rel="stylesheet" href="admin2.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.12.14, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
     
     
     <script type="application/ld+json">{
@@ -52,33 +24,59 @@ if ($_POST) {
 		"sameAs": []
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Login">
+    <meta property="og:title" content="compra concluida">
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode">
-    <section class="u-align-center u-clearfix u-gradient u-section-1" id="carousel_0234">
-      <div class="u-clearfix u-sheet u-sheet-1">
+    <section class="u-align-center u-clearfix u-section-1" id="sec-0553">
+      <div class="u-align-center u-clearfix u-sheet u-sheet-1">
         <img class="u-image u-image-default u-image-1" src="images/947ea8f2999b07da1da8b4b5f2dd955e.png" alt="" data-image-width="415" data-image-height="122">
-        <h2 class="u-text u-text-default u-text-1">Login</h2>
-        <h6 class="u-text u-text-default u-text-2">Empresas</h6>
-        <div class="u-align-center u-container-style u-expanded-width-xs u-group u-radius-30 u-shape-round u-white u-group-1">
-          <div class="u-container-layout u-container-layout-1">
-            <div class="u-form u-form-1">
-            <form method="post">
-              <input type="text" name="username" placeholder="Username" class="u-border-11 u-border-palette-4-light-3 u-custom-color-1 u-input u-input-rectangle u-radius-21 u-input-2"/>
-              <input type="password" name="password" placeholder="Password" class="u-border-11 u-border-palette-4-light-3 u-custom-color-1 u-input u-input-rectangle u-radius-21 u-input-2"/>
-              <div class="text-center">
-              <?php
-                echo "<p style='color: red;'>$error_text</p>";
-              ?>
-              <input class="u-active-palette-4-light-1 u-border-5 u-border-active-palette-4-light-1 u-border-hover-palette-4-light-1 u-border-palette-4-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-4-light-1 u-palette-4-base u-radius-10 u-btn-1" type="submit" value="Login" >
-              <a href="Registos.php">
-              <div class="button">Create an account</div>
-              </a>
-             </div>
-            </form>
-            </div>
-          </div>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-section-2" id="sec-d512">
+      <div class="u-align-left u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-text-1">Validar Empresas,</h1>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-section-3" id="sec-d894">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+          <table class="u-table-entity u-table-entity-1">
+            <colgroup>
+              <col width="33.3%">
+              <col width="33.3%">
+              <col width="33.400000000000006%">
+            </colgroup>
+            <thead class="u-palette-4-base u-table-header u-table-header-1">
+              <tr style="height: 21px;">
+                <th class="u-border-1 u-border-palette-4-base u-table-cell">Nome</th>
+                <th class="u-border-1 u-border-palette-4-base u-table-cell">Descricao</th>
+                <th class="u-border-1 u-border-palette-4-base u-table-cell">email</th>
+              </tr>
+            </thead>
+            <tbody class="u-table-body">
+
+
+
+              <tr style="height: 75px;">
+                <td class="u-border-1 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-4">Row 1</td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
+              </tr>
+              <tr style="height: 76px;">
+                <td class="u-border-0 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-7">Aceitar empresa?</td>
+                <td class="u-border-0 u-border-grey-30 u-table-cell">
+                  <a class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-1" href="https://nicepage.com">Sim</a>
+                </td>
+                <td class="u-border-0 u-border-grey-30 u-table-cell">
+                  <a class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-2" href="https://nicepage.com">Não</a>
+                </td>
+              </tr>
+            
+              
+              
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -109,6 +107,16 @@ if ($_POST) {
           </a>
         </div>
       </div></footer>
-  
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/css-templates" target="_blank">
+        <span>CSS Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://nicepage.com/website-builder" target="_blank">
+        <span>Website Builder</span>
+      </a>. 
+    </section>
   </body>
 </html>

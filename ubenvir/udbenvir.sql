@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Jun-2022 às 02:00
+-- Tempo de geração: 21-Jun-2022 às 16:00
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -28,9 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `carrinho` (
-  `userid` text NOT NULL,
-  `productid` int(11) NOT NULL
+  `userid` int(11) NOT NULL,
+  `productid` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`userid`, `productid`, `quantity`) VALUES
+(1, 8, 0),
+(1, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -44,17 +53,6 @@ CREATE TABLE `comments` (
   `message` varchar(1000) NOT NULL,
   `id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `comments`
---
-
-INSERT INTO `comments` (`question_id`, `user_name`, `message`, `id`) VALUES
-(2, 'vic', 'hey oh testing', 1),
-(5, 'vic', 'hello', 2),
-(5, 'message', 'rtfyguhijopl', 3),
-(5, 'iuyewaghdf', 'uyshgdjfnmiusdjhfnusidhjf', 4),
-(6, 'ze', 'Nope, mano, estás doido?', 5);
 
 -- --------------------------------------------------------
 
@@ -79,8 +77,7 @@ CREATE TABLE `companhia` (
 --
 
 INSERT INTO `companhia` (`Nome`, `username`, `email`, `password`, `telemovel`, `endereco`, `banco`, `descricao`, `id`) VALUES
-('gggg', 'gggg', 'gggg', 'gggg', 444, 'gggg', 444, NULL, 1),
-('2123w1', 'PingoDoce', '213', '2112', 123, 'ewfw', 12, NULL, 2);
+('Pingo Doce', 'pingo', 'j@gmail.com', 'pingo', 967123449, 'ffffr', 123455, 'Uma empresa muito bonita. Venha ao pingo doce de janeiro a janeiro.', 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +98,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `companhia`, `preco`, `comentário`, `nome`) VALUES
-(1, 1, '122', 'Produto fixe para comer o cu da tua mae', 'a tua mãe');
+(8, 1, '1', '1 kg de peras fresquinhas', 'Peras');
 
 -- --------------------------------------------------------
 
@@ -128,7 +125,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`Nome`, `email`, `username`, `password`, `endereco`, `telemovel`, `nif`, `credito`, `datacc`, `3numcc`, `id`) VALUES
-('teste', 'teste', 'teste', 'teste', 'teste', 23, 23, NULL, NULL, NULL, 1);
+('joaquim', 'a@gmail.com', 'j0k1n9', 'dddd', 'ffff', 967123449, 333, NULL, NULL, NULL, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -160,13 +157,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `companhia`
 --
 ALTER TABLE `companhia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `users`

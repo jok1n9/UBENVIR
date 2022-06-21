@@ -86,7 +86,7 @@ if ($_POST) {
           <input type="text" name="nome" placeholder="Nome Completo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" />
           <input type="text" name="email" placeholder="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
           <input type="text" name="username" placeholder="Username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
-          <input type="text" name="password" placeholder="Password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+          <input type="password" name="password" placeholder="Password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
           <input type="text" name="endereco" placeholder="endereco" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
           <input type="text" name="telemovel" placeholder="N telemóvel" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
           <input type="text" name="nif" placeholder="Nif" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" />
@@ -96,8 +96,8 @@ if ($_POST) {
             echo "<p style='color: red;'>$error_text</p>";
             ?>
             <input class="button" type="submit" value="Registo">
-            <a href="Registo-Particular.php">
-              <div class="button">Create an account</div>
+            <a href="Login-particulares.php">
+              <div class="button">Log in</div>
             </a>
           </div>
         </form>

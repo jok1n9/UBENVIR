@@ -90,7 +90,7 @@ if ($_POST) {
               <input type="text" name="nome" placeholder="Nome Completo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="email" placeholder="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="username" placeholder="Username" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
-              <input type="text" name="password" placeholder="Password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+              <input type="password" name="password" placeholder="Password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="endereco" placeholder="endereco" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="telemovel" placeholder="N telemóvel" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
               <input type="text" name="banco" placeholder="Numero Conta bancária" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" />
